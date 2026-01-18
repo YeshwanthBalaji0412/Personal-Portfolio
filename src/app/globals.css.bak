@@ -126,7 +126,7 @@ body {
   pointer-events: none;
   z-index: -10;
   opacity: 0.03;
-  background-image: url('/noise.svg');
+  background-image: url("/Personal-Portfolio/noise.svg");
 }
 
 /* Grid Background */
