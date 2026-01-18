@@ -29,10 +29,10 @@ export const Contact = () => {
                     className="max-w-3xl mx-auto text-center"
                 >
                     <span className="text-cyan-500 font-mono text-sm tracking-wider uppercase mb-4 block">Get In Touch</span>
-                    <h2 className="text-4xl md:text-5xl font-bold mb-8">Let's build something <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">amazing</span> together.</h2>
+                    <h2 className="text-4xl md:text-5xl font-bold mb-8">Let&apos;s build something <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">amazing</span> together.</h2>
 
                     <p className="text-gray-400 text-lg mb-12 max-w-xl mx-auto">
-                        Whether you have a project in mind or just want to say hi, I’m always open to discussing new opportunities and ideas.
+                        Whether you have a project in mind or just want to say hi, I&apos;m always open to discussing new opportunities and ideas.
                     </p>
 
                     <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-16">

@@ -27,7 +27,7 @@ export const About = () => {
                             <p>{profile.about.bio}</p>
                             <p>
                                 I focus on building inclusive products that solve real-world problems.
-                                When I'm not coding, you can find me exploring new tech stacks or gaming.
+                                When I&apos;m not coding, you can find me exploring new tech stacks or gaming.
                             </p>
 
                             <div className="mt-8">

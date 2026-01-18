@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { profile } from "@/data/profile";
 import { Button } from "@/components/ui/Button";
-import { Github, Linkedin, Mail, Twitter, ArrowRight, Instagram } from "lucide-react";
+import { Github, Linkedin, Mail, ArrowRight, Instagram } from "lucide-react";
 
 export const Hero = () => {
     const SocialIcon = ({ type, url }: { type: string; url: string }) => {
@@ -41,7 +41,7 @@ export const Hero = () => {
                     </span>
 
                     <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6">
-                        Hello, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">{profile.name}</span>
+                        Hello, I&apos;m <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">{profile.name}</span>
                     </h1>
 
                     <h2 className="text-2xl md:text-4xl text-gray-400 mb-8 font-light">
