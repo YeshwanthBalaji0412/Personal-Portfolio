@@ -4,19 +4,14 @@ import { motion } from "framer-motion";
 import { profile } from "@/data/profile";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
+import { ScrollAnimation } from "@/components/ui/ScrollAnimation";
 import Image from "next/image";
 
 export const About = () => {
     return (
         <section id="about" className="py-20 md:py-32 relative">
             <div className="container mx-auto px-6">
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
-                    className="max-w-4xl mx-auto"
-                >
+                <ScrollAnimation className="max-w-4xl mx-auto">
                     <h2 className="text-3xl md:text-4xl font-bold mb-12 flex items-center gap-4">
                         <span className="text-cyan-500">01.</span> About Me
                         <span className="h-[1px] bg-gray-800 flex-grow max-w-[200px]"></span>
@@ -67,7 +62,7 @@ export const About = () => {
                             </Card>
                         </div>
                     </div>
-                </motion.div>
+                </ScrollAnimation>
             </div>
         </section>
     );

@@ -4,7 +4,7 @@ export const profile = {
   role: "Software Developer", // EDIT HERE
   headline: "Building the future with code and caffeine.", // EDIT HERE
   location: "Boston, MA", // EDIT HERE
-  email: "balaji.y@northeastern.edu", // EDIT HERE
+  email: "yeshwanthbalaji.dev@gmail.com", // EDIT HERE
   socials: {
     github: "https://github.com/YeshwanthBalaji0412",
     linkedin: "https://www.linkedin.com/in/yeshwanthbalaji/",
@@ -37,7 +37,7 @@ export const profile = {
     {
       title: "Neon Nexus", // EDIT HERE
       description: "A futuristic dashboard for managing IoT devices using real-time websocket data.", // EDIT HERE
-      techStack: ["Next.js", "WebSockets", "D3.js"], // EDIT HERE
+      techStack: ["java", "WebSockets", "D3.js"], // EDIT HERE
       link: "https://github.com", // EDIT HERE
       github: "https://github.com", // EDIT HERE
     },
@@ -82,5 +82,24 @@ export const profile = {
       degree: "Bachelor of Technology in Computer Science and Engineering",
       period: "July 2020 - May 2024",
     }
-  ]
+  ],
+  achievements: {
+    publications: [
+      {
+        title: "Optical Character Recognition and Analysis of Tamil Characters",
+        conference: "International Journal of Microsystems and IoT",
+        year: "2023",
+        link: "https://zenodo.org/records/10609826"
+      }
+    ],
+    certifications: [
+      {
+        title: "AWS Certified Cloud Practitioner",
+        issuer: "Amazon Web Services",
+        date: "2023",
+        link: "https://www.credly.com/badges/a874a563-40a2-46b1-9046-e0e3d137b758/linked_in_profile"
+      }
+
+    ]
+  }
 };

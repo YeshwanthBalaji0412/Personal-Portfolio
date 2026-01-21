@@ -7,6 +7,7 @@ import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { ExternalLink, Github, X, FolderOpen } from "lucide-react";
+import { ScrollAnimation } from "@/components/ui/ScrollAnimation";
 
 export const Projects = () => {
     const [selectedTag, setSelectedTag] = useState<string>("All");
@@ -14,12 +15,6 @@ export const Projects = () => {
 
     // Derive tags from projects
     const allTags = ["All", ...Array.from(new Set(profile.projects.flatMap(p => p.techStack)))];
-    // Limit tags to common ones or show all if few? Let's just pick top 5-6 or categories if provided. 
-    // User asked for "filtering by tags (e.g. AI, Cloud, Java)".
-    // For now I'll use the techStack as tags.
-    // Actually, extracting unique tech tags might be too many. 
-    // I will just allow filtering by top tech or manual categories if they were in data.
-    // Let's use `techStack` contents for simple filtering.
 
     const filteredProjects = selectedTag === "All"
         ? profile.projects
@@ -29,26 +24,30 @@ export const Projects = () => {
         <section id="projects" className="py-20 md:py-32 relative">
             <div className="container mx-auto px-6">
                 <div className="max-w-6xl mx-auto">
-                    <h2 className="text-3xl md:text-4xl font-bold mb-12 flex items-center gap-4">
-                        <span className="text-cyan-500">03.</span> Featured Projects
-                        <span className="h-[1px] bg-gray-800 flex-grow max-w-[200px]"></span>
-                    </h2>
+                    <ScrollAnimation>
+                        <h2 className="text-3xl md:text-4xl font-bold mb-12 flex items-center gap-4">
+                            <span className="text-cyan-500">03.</span> Featured Projects
+                            <span className="h-[1px] bg-gray-800 flex-grow max-w-[200px]"></span>
+                        </h2>
+                    </ScrollAnimation>
 
                     {/* Filters */}
-                    <div className="flex flex-wrap gap-2 mb-12">
-                        {allTags.slice(0, 8).map(tag => (
-                            <button
-                                key={tag}
-                                onClick={() => setSelectedTag(tag)}
-                                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${selectedTag === tag
+                    <ScrollAnimation delay={0.2}>
+                        <div className="flex flex-wrap gap-2 mb-12">
+                            {allTags.slice(0, 8).map(tag => (
+                                <button
+                                    key={tag}
+                                    onClick={() => setSelectedTag(tag)}
+                                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${selectedTag === tag
                                         ? "bg-cyan-500 text-black shadow-lg shadow-cyan-500/25"
                                         : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white"
-                                    }`}
-                            >
-                                {tag}
-                            </button>
-                        ))}
-                    </div>
+                                        }`}
+                                >
+                                    {tag}
+                                </button>
+                            ))}
+                        </div>
+                    </ScrollAnimation>
 
                     {/* Grid */}
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -58,7 +57,8 @@ export const Projects = () => {
                                     key={project.title}
                                     layout
                                     initial={{ opacity: 0, scale: 0.9 }}
-                                    animate={{ opacity: 1, scale: 1 }}
+                                    whileInView={{ opacity: 1, scale: 1 }}
+                                    viewport={{ once: true }}
                                     exit={{ opacity: 0, scale: 0.9 }}
                                     transition={{ duration: 0.3 }}
                                 >

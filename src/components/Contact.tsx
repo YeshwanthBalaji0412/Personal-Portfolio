@@ -6,6 +6,7 @@ import { profile } from "@/data/profile";
 import { Copy, Check, Mail, Send } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { ScrollAnimation } from "@/components/ui/ScrollAnimation";
 
 export const Contact = () => {
     const [copied, setCopied] = useState(false);
@@ -22,12 +23,7 @@ export const Contact = () => {
             <div className="absolute inset-0 bg-[linear-gradient(rgba(6,182,212,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.05)_1px,transparent_1px)] bg-[size:100px_100px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none" />
 
             <div className="container mx-auto px-6 relative z-10">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="max-w-3xl mx-auto text-center"
-                >
+                <ScrollAnimation className="max-w-3xl mx-auto text-center">
                     <span className="text-cyan-500 font-mono text-sm tracking-wider uppercase mb-4 block">Get In Touch</span>
                     <h2 className="text-4xl md:text-5xl font-bold mb-8">Let&apos;s build something <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500">amazing</span> together.</h2>
 
@@ -88,7 +84,7 @@ export const Contact = () => {
                         </Button>
                     </form>
 
-                </motion.div>
+                </ScrollAnimation>
             </div>
         </section>
     );
