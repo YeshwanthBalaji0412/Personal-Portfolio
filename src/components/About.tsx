@@ -1,13 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { profile } from "@/data/profile";
+import { useProfile } from "@/context/ProfileContext";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import { ScrollAnimation } from "@/components/ui/ScrollAnimation";
 import Image from "next/image";
 
 export const About = () => {
+    const { profile } = useProfile();
     return (
         <section id="about" className="py-20 md:py-32 relative">
             <div className="container mx-auto px-6">

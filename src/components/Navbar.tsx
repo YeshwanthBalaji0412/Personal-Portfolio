@@ -4,7 +4,8 @@ import React, { useState, useEffect } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { useActiveSection } from "@/hooks/use-active-section";
 import { cn } from "@/lib/utils";
-import { Menu, X, Terminal } from "lucide-react";
+import { Menu, X, Terminal, BrainCircuit, Palette } from "lucide-react";
+import { useProfile } from "@/context/ProfileContext";
 
 const navLinks = [
     { name: "About", href: "#about" },
@@ -25,6 +26,8 @@ export const Navbar = () => {
         damping: 30,
         restDelta: 0.001
     });
+
+    const { mode, toggleMode } = useProfile();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -47,10 +50,18 @@ export const Navbar = () => {
                 transition={{ duration: 0.5 }}
             >
                 <div className="container mx-auto px-6 flex items-center justify-between">
-                    <a href="#" className="flex items-center gap-2 text-xl font-bold tracking-tighter hover:text-cyan-400 transition-colors">
-                        <Terminal className="w-6 h-6 text-cyan-500" />
-                        <span className="font-mono">DEV.PROFILE</span>
-                    </a>
+                    <button
+                        onClick={toggleMode}
+                        className="flex items-center gap-2 text-xl font-bold tracking-tighter hover:text-cyan-400 transition-colors group"
+                    >
+                        {mode === 'dev' && <Terminal className="w-6 h-6 text-cyan-500 group-hover:rotate-12 transition-transform" />}
+                        {mode === 'ai' && <BrainCircuit className="w-6 h-6 text-purple-500 group-hover:pulse transition-transform" />}
+                        {mode === 'ux' && <Palette className="w-6 h-6 text-pink-500 group-hover:scale-110 transition-transform" />}
+
+                        <span className="font-mono">
+                            {mode === 'dev' ? 'DEV.PROFILE' : (mode === 'ai' ? 'AI.PROFILE' : 'UX.PROFILE')}
+                        </span>
+                    </button>
 
                     {/* Desktop Nav */}
                     <nav className="hidden md:flex items-center gap-8">

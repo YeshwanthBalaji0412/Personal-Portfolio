@@ -1,11 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { profile } from "@/data/profile";
+import { useProfile } from "@/context/ProfileContext";
 import { Button } from "@/components/ui/Button";
 import { Github, Linkedin, Mail, ArrowRight, Instagram } from "lucide-react";
 
 export const Hero = () => {
+    const { profile } = useProfile();
     const SocialIcon = ({ type, url }: { type: string; url: string }) => {
         let Icon = Mail;
         if (type === "github") Icon = Github;

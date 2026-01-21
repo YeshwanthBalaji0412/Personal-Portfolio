@@ -1,11 +1,12 @@
 "use client";
 
-import { profile } from "@/data/profile";
+import { useProfile } from "@/context/ProfileContext";
 import { ScrollAnimation } from "@/components/ui/ScrollAnimation";
 import { Card } from "@/components/ui/Card";
 import { BookOpen, Award, ExternalLink } from "lucide-react";
 
 export const Achievements = () => {
+    const { profile } = useProfile();
     return (
         <section id="achievements" className="py-20 md:py-32 relative">
             <div className="container mx-auto px-6 relative z-10">

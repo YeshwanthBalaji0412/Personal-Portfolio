@@ -22,6 +22,8 @@ export const metadata: Metadata = {
   description: "A trendy, interactive portfolio for a full-stack developer.",
 };
 
+import { ProfileProvider } from "@/context/ProfileContext";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -30,7 +32,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased`}>
       <body className="bg-background text-foreground overflow-x-hidden selection:bg-cyan-500/30 selection:text-cyan-200">
-        {children}
+        <ProfileProvider>
+          {children}
+        </ProfileProvider>
       </body>
     </html>
   );

@@ -1,9 +1,10 @@
 "use client";
 
-import { profile } from "@/data/profile";
+import { useProfile } from "@/context/ProfileContext";
 import { Github, Linkedin, Instagram } from "lucide-react";
 
 export const Footer = () => {
+    const { profile } = useProfile();
     return (
         <footer className="py-8 bg-black border-t border-white/10">
             <div className="container mx-auto px-6 text-center">

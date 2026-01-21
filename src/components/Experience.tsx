@@ -1,10 +1,11 @@
 "use client";
 
-import { profile } from "@/data/profile";
+import { useProfile } from "@/context/ProfileContext";
 import { Briefcase, GraduationCap, Calendar } from "lucide-react";
 import { ScrollAnimation } from "@/components/ui/ScrollAnimation";
 
 export const Experience = () => {
+    const { profile } = useProfile();
     return (
         <section id="experience" className="py-20 md:py-32">
             <div className="container mx-auto px-6">

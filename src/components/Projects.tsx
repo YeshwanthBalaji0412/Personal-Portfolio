@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { profile } from "@/data/profile";
+import { useProfile } from "@/context/ProfileContext";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
@@ -10,6 +10,7 @@ import { ExternalLink, Github, X, FolderOpen } from "lucide-react";
 import { ScrollAnimation } from "@/components/ui/ScrollAnimation";
 
 export const Projects = () => {
+    const { profile } = useProfile();
     const [selectedTag, setSelectedTag] = useState<string>("All");
     const [selectedProject, setSelectedProject] = useState<typeof profile.projects[0] | null>(null);
 

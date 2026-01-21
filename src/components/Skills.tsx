@@ -1,11 +1,12 @@
 "use client";
 
-import { profile } from "@/data/profile";
+import { useProfile } from "@/context/ProfileContext";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { ScrollAnimation } from "@/components/ui/ScrollAnimation";
 
 export const Skills = () => {
+    const { profile } = useProfile();
     return (
         <section id="skills" className="py-20 md:py-32">
             <div className="container mx-auto px-6">

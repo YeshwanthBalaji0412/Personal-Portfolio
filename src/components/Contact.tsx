@@ -2,13 +2,14 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { profile } from "@/data/profile";
+import { useProfile } from "@/context/ProfileContext";
 import { Copy, Check, Mail, Send } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { ScrollAnimation } from "@/components/ui/ScrollAnimation";
 
 export const Contact = () => {
+    const { profile } = useProfile();
     const [copied, setCopied] = useState(false);
 
     const handleCopy = () => {
