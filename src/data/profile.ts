@@ -66,8 +66,8 @@ export const devProfile: ProfileData = {
   },
   about: {
     bio: "I’m a Software Developer with an interest in building well-structured and reliable applications. I enjoy working on backend systems, APIs, and cloud-based environments, and I like understanding how different components of a system connect and work together. I focus on building software that works well in real-world scenarios and is practical to maintain. I value clear design, steady improvement, and learning through hands-on development. Outside of work, I spend time exploring new technologies, refining personal projects, and enjoy capturing moments through photography.",
-    highlights: ["Backend Systems", "Cloud & Deployment", "DevOps","AI & Emerging Tech","API Development"],
-    avatar: "/me.jpg",
+    highlights: ["Backend Systems", "Cloud & Deployment", "DevOps", "AI & Emerging Tech", "API Development"],
+    avatar: "/profile.jpg",
   },
   skills: [
     {
