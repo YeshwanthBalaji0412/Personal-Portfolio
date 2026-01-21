@@ -21,10 +21,6 @@ export const About = () => {
                     <div className="grid md:grid-cols-3 gap-12">
                         <div className="md:col-span-2 space-y-6 text-gray-400 text-lg leading-relaxed">
                             <p>{profile.about.bio}</p>
-                            <p>
-                                I focus on building inclusive products that solve real-world problems.
-                                When I&apos;m not coding, you can find me exploring new tech stacks or gaming.
-                            </p>
 
                             <div className="mt-8">
                                 <h3 className="text-white font-medium mb-4 flex items-center gap-2">
