@@ -15,6 +15,7 @@ export interface ProfileData {
     highlights: string[];
     avatar: string;
   };
+  resume?: string;
   skills: {
     category: string;
     items: string[];
@@ -69,52 +70,57 @@ export const devProfile: ProfileData = {
     highlights: ["Backend Systems", "Cloud & Deployment", "DevOps", "AI & Emerging Tech", "API Development"],
     avatar: "/profile.jpg",
   },
+  resume: "/Yeshwanth_SDE.pdf",
   skills: [
     {
-      category: "Frontend",
-      items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+      category: "Programming Languages",
+      items: ["Java", "C++", "Python", "JavaScript", "TypeScript", "HCL (Terraform)"],
     },
     {
-      category: "Backend",
-      items: ["Node.js", "Express", "PostgreSQL", "Supabase", "GraphQL"],
+      category: "Server-Side & Web",
+      items: ["RESTful APIs", "Node.js", "Express.js", "Flask", "React", "HTML", "CSS"],
     },
     {
-      category: "Tools & DevOps",
-      items: ["Git", "Docker", "AWS", "Vercel", "Figma"],
+      category: "Cloud & DevOps",
+      items: ["AWS (EC2, S3, RDS, CloudWatch)", "GCP", "Docker", "CI/CD Pipelines", "GitHub Actions", "Git"],
     },
     {
-      category: "AI & Emerging Tech",
-      items: ["OpenAI API", "LangChain", "Web3"],
+      category: "Databases",
+      items: ["MySQL", "PostgreSQL", "MongoDB", "JDBC"],
+    },
+    {
+      category: "Testing & Libraries",
+      items: ["JUnit", "Pytest", "Postman", "JavaFX", "Pandas", "NumPy", "scikit-learn", "XChart"],
     }
   ],
   projects: [
     {
-      title: "Neon Nexus",
-      description: "A futuristic dashboard for managing IoT devices using real-time websocket data.",
-      techStack: ["java", "WebSockets", "D3.js"],
-      link: "https://github.com",
-      github: "https://github.com",
+      title: "Cloud-Native Health Monitoring System",
+      description: "A cloud-native backend system designed to monitor application health and manage operational data through secure APIs. The system focuses on reliability, scalability, and automation, with cloud infrastructure provisioned using infrastructure-as-code and a CI/CD pipeline to support continuous deployment. It simulates real-world backend service behavior, including health checks, data persistence, and production-ready deployment workflows.",
+      techStack: ["Javascript", "AWS", "Docker", "CI/CD Pipelines", "GitHub Actions", "Git", "APIs", "MySQL", "Terraform"],
+      link: "https://github.com/YeshwanthBalaji0412/Cloud-Native-Health-Check-API-with-Automated-AWS-Infrastructure",
+      github: "https://github.com/YeshwanthBalaji0412/Cloud-Native-Health-Check-API-with-Automated-AWS-Infrastructure",
     },
     {
-      title: "CyberCommerce",
-      description: "Headless e-commerce platform built with high performance and accessibility in mind.",
-      techStack: ["React", "Shopify API", "Tailwind"],
-      link: "https://github.com",
-      github: "https://github.com",
+      title: "FinAltica",
+      description: "FinAltica is a JavaFX-based personal finance manager using BST, Stack, HashMap, and MySQL to track incomes, expenses, accounts, and visualize data with charts for smarter budgeting and analysis.",
+      techStack: ["JavaFX", "BST", "Stack", "HashMap", "MySQL", "Java", "JDBC", "CSS"],
+      link: "https://github.com/YeshwanthBalaji0412/FinAltica",
+      github: "https://github.com/YeshwanthBalaji0412/FinAltica",
     },
     {
-      title: "AI ChatBot",
-      description: "An intelligent chatbot assistant powered by LLMs with context retention.",
-      techStack: ["Python", "FastAPI", "OpenAI"],
-      link: "https://github.com",
-      github: "https://github.com",
+      title: "RoomateFinder",
+      description: "JavaFX-based desktop application designed to simplify the process of finding compatible roommates. The project provides a secure and user-friendly platform where users can create roommate listings, browse available postings, and apply detailed filters to find ideal living partners. Built with Java, JavaFX, and MySQL, the system combines intuitive UI design with reliable backend logic, ensuring a smooth user experience and efficient data management.",
+      techStack: ["JavaFX", "Java", "MySQL", "JDBC", "CSS"],
+      link: "https://github.com/YeshwanthBalaji0412/RoomateFinder",
+      github: "https://github.com/YeshwanthBalaji0412/RoomateFinder",
     },
     {
-      title: "Portfolio v1",
-      description: "My first personal website showcasing earlier works and design evolution.",
-      techStack: ["HTML", "SCSS", "JavaScript"],
-      link: "https://github.com",
-      github: "https://github.com",
+      title: "Personal Portfolio",
+      description: "A modern, interactive portfolio website built with Next.js and TypeScript. Features a dynamic role-switching system (Dev/AI/UX), scroll-triggered animations using Framer Motion, and a responsive design styled with Tailwind CSS.",
+      techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "React"],
+      link: "https://github.com/YeshwanthBalaji0412/Personal-Portfolio",
+      github: "https://github.com/YeshwanthBalaji0412/Personal-Portfolio",
     }
   ],
   experience: [
@@ -122,7 +128,7 @@ export const devProfile: ProfileData = {
       company: "SmartInternz",
       role: "Data Science Intern",
       period: "May 2023 - July 2023",
-      description: "Leading the frontend team to build scalable micro-frontends.",
+      description: " Developed and trained a machine learning model (scikit-learn) to predict fuel consumption, achieving 86.5% accuracy to optimize fleet routes and reduce operational expenses",
     }
   ],
   education: [
@@ -163,25 +169,26 @@ export const aiProfile: ProfileData = {
   headline: "Engineering intelligence with Neural Networks and LLMs.",
   about: {
     ...devProfile.about,
-    bio: "I specialize in building intelligent systems that learn and adapt. My focus ranges from training large language models to deploying efficient computer vision pipelines on edge devices.",
+    bio: "I am an AI enthusiast and a developer who enjoys exploring how intelligent systems can be built and integrated into real-world software. My interest in AI comes from working on practical projects and understanding how data, models, and software come together to solve problems. I’ve worked on applying AI in meaningful contexts, including projects related to healthcare such as ocular disease prediction, which strengthened my interest in using AI to support better decisions and outcomes. I’m also interested in how AI can be applied across domains like fintech, where intelligent systems can improve efficiency and reliability. As AI continues to become part of everyday software, I’m motivated to keep learning, experimenting, and growing in this space while building solutions that are useful, responsible, and impactful.",
     highlights: ["Deep Learning", "NLP", "Model Optimization"],
   },
+  resume: "/Yeshwanth_Balaji_AI.pdf",
   skills: [
     {
-      category: "Machine Learning",
-      items: ["PyTorch", "TensorFlow", "Scikit-Learn", "Keras", "XGBoost"],
+      category: "Programming & Databases",
+      items: ["Python", "Java", "SQL", "JavaScript", "Node.js", "HTML/CSS", "MySQL", "MongoDB"],
     },
     {
-      category: "LLMs & NLP",
-      items: ["Transformers", "HuggingFace", "LangChain", "LlamaIndex", "OpenAI API"],
+      category: "AI/ML Frameworks",
+      items: ["TensorFlow", "Keras", "Pytorch", "Scikit-learn", "Pandas", "NumPy", "OpenCV"],
     },
     {
-      category: "Data Engineering",
-      items: ["Pandas", "NumPy", "Apache Spark", "SQL", "Airflow"],
+      category: "Cloud & DevOps",
+      items: ["AWS (Bedrock, S3, EC2, RDS)", "GCP", "Terraform", "Docker", "GitHub Actions", "Packer"],
     },
     {
-      category: "MLOps",
-      items: ["MLflow", "Docker", "Kubernetes", "AWS SageMaker", "DVC"],
+      category: "Tools & Technologies",
+      items: ["RESTful APIs", "Git", "VS Code", "Postman", "Jupyter Notebooks", "Flask", "React"],
     }
   ],
   projects: [
@@ -233,6 +240,7 @@ export const uxProfile: ProfileData = {
     bio: "I believe that great software is not just about code, but about the experience it delivers. I combine technical expertise with design thinking to create interfaces that are both beautiful and functional.",
     highlights: ["User Research", "Interaction Design", "Prototyping"],
   },
+  resume: "/UI_UX_Resume.pdf",
   skills: [
     {
       category: "Design Tools",

@@ -14,8 +14,24 @@ export const Projects = () => {
     const [selectedTag, setSelectedTag] = useState<string>("All");
     const [selectedProject, setSelectedProject] = useState<typeof profile.projects[0] | null>(null);
 
-    // Derive tags from projects
-    const allTags = ["All", ...Array.from(new Set(profile.projects.flatMap(p => p.techStack)))];
+    // Define main languages for filtering
+    const MAIN_LANGUAGES = ["All", "Java", "Python", "JavaScript", "TypeScript", "C++", "SQL", "React", "Next.js"];
+
+    // Derive tags from projects but only keep the main ones
+    const allTags = ["All", ...Array.from(new Set(profile.projects.flatMap(p => p.techStack)))
+        .filter(tag => MAIN_LANGUAGES.includes(tag) || tag === "All")
+        .sort((a, b) => MAIN_LANGUAGES.indexOf(a) - MAIN_LANGUAGES.indexOf(b))];
+
+    // Fallback: If no tags match main languages (e.g. customized names), show unique ones that look like languages?
+    // For safety, let's just make sure we capture what's in the data.
+    // Data has: "Javascript", "Java", "Python", "TypeScript", "React", "Next.js"
+    // We should normalize "Javascript" to "JavaScript" logic if needed, but data has "Javascript" in one place.
+    // Let's add "Javascript" to MAIN_LANGUAGES to be safe.
+
+    const SAFE_MAIN_LANGUAGES = ["All", "Java", "Python", "Javascript", "JavaScript", "TypeScript", "C++", "SQL", "React", "Next.js", "JavaFX"];
+
+    const displayedTags = ["All", ...Array.from(new Set(profile.projects.flatMap(p => p.techStack)))
+        .filter(tag => SAFE_MAIN_LANGUAGES.includes(tag))];
 
     const filteredProjects = selectedTag === "All"
         ? profile.projects
@@ -35,7 +51,7 @@ export const Projects = () => {
                     {/* Filters */}
                     <ScrollAnimation delay={0.2}>
                         <div className="flex flex-wrap gap-2 mb-12">
-                            {allTags.slice(0, 8).map(tag => (
+                            {displayedTags.map(tag => (
                                 <button
                                     key={tag}
                                     onClick={() => setSelectedTag(tag)}
@@ -72,11 +88,7 @@ export const Projects = () => {
                                                         <Github size={20} />
                                                     </a>
                                                 )}
-                                                {project.link && (
-                                                    <a href={project.link} target="_blank" onClick={e => e.stopPropagation()} className="text-gray-400 hover:text-white transition-colors">
-                                                        <ExternalLink size={20} />
-                                                    </a>
-                                                )}
+
                                             </div>
                                         </div>
 
@@ -147,13 +159,7 @@ export const Projects = () => {
                                 </div>
 
                                 <div className="flex gap-4">
-                                    {selectedProject.link && (
-                                        <a href={selectedProject.link} target="_blank" className="flex-1">
-                                            <Button className="w-full">
-                                                <ExternalLink size={16} /> Live Demo
-                                            </Button>
-                                        </a>
-                                    )}
+
                                     {selectedProject.github && (
                                         <a href={selectedProject.github} target="_blank" className="flex-1">
                                             <Button variant="outline" className="w-full">

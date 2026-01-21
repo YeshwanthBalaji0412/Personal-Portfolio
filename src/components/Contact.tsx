@@ -11,11 +11,58 @@ import { ScrollAnimation } from "@/components/ui/ScrollAnimation";
 export const Contact = () => {
     const { profile } = useProfile();
     const [copied, setCopied] = useState(false);
+    const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+    const [errors, setErrors] = useState({ name: "", email: "", message: "" });
 
     const handleCopy = () => {
         navigator.clipboard.writeText(profile.email);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
+    };
+
+    const validate = () => {
+        let valid = true;
+        const newErrors = { name: "", email: "", message: "" };
+
+        if (!formData.name.trim()) {
+            newErrors.name = "Name is required";
+            valid = false;
+        }
+
+        if (!formData.email.trim()) {
+            newErrors.email = "Email is required";
+            valid = false;
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+            newErrors.email = "Please enter a valid email address";
+            valid = false;
+        }
+
+        if (!formData.message.trim()) {
+            newErrors.message = "Message is required";
+            valid = false;
+        }
+
+        setErrors(newErrors);
+        return valid;
+    };
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (validate()) {
+            // Handle valid submission (e.g., API call)
+            alert("Message sent successfully (Simulation)!");
+            setFormData({ name: "", email: "", message: "" });
+            setErrors({ name: "", email: "", message: "" });
+        }
+    };
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { id, value } = e.target;
+        setFormData(prev => ({ ...prev, [id]: value }));
+        // Clear error when user starts typing
+        if (errors[id as keyof typeof errors]) {
+            setErrors(prev => ({ ...prev, [id]: "" }));
+        }
     };
 
     return (
@@ -52,35 +99,44 @@ export const Contact = () => {
                         </Card>
                     </div>
 
-                    <form className="max-w-md mx-auto space-y-4 text-left glass-panel p-8 rounded-2xl" onSubmit={(e) => e.preventDefault()}>
+                    <form className="max-w-md mx-auto space-y-4 text-left glass-panel p-8 rounded-2xl" onSubmit={handleSubmit} noValidate>
                         <div>
                             <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-1">Name</label>
                             <input
                                 type="text"
                                 id="name"
-                                className="w-full bg-black/30 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500 transition-colors"
-                                placeholder="John Doe"
+                                value={formData.name}
+                                onChange={handleChange}
+                                className={`w-full bg-black/30 border rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500 transition-colors ${errors.name ? 'border-red-500' : 'border-white/10'}`}
+                                placeholder="Name"
                             />
+                            {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
                         </div>
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium text-gray-400 mb-1">Email</label>
                             <input
                                 type="email"
                                 id="email"
-                                className="w-full bg-black/30 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500 transition-colors"
-                                placeholder="john@example.com"
+                                value={formData.email}
+                                onChange={handleChange}
+                                className={`w-full bg-black/30 border rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500 transition-colors ${errors.email ? 'border-red-500' : 'border-white/10'}`}
+                                placeholder="Email"
                             />
+                            {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
                         </div>
                         <div>
                             <label htmlFor="message" className="block text-sm font-medium text-gray-400 mb-1">Message</label>
                             <textarea
                                 id="message"
                                 rows={4}
-                                className="w-full bg-black/30 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500 transition-colors resize-none"
+                                value={formData.message}
+                                onChange={handleChange}
+                                className={`w-full bg-black/30 border rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500 transition-colors resize-none ${errors.message ? 'border-red-500' : 'border-white/10'}`}
                                 placeholder="Your message..."
                             />
+                            {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
                         </div>
-                        <Button className="w-full">
+                        <Button className="w-full" type="submit">
                             Send Message <Send size={16} />
                         </Button>
                     </form>
