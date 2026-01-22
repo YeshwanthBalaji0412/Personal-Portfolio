@@ -18,8 +18,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dev Portfolio | Cyber-Tech",
-  description: "A trendy, interactive portfolio for a full-stack developer.",
+  title: "Yeshwanth Portfolio",
+  description: "Personal portfolio of Yeshwanth Balaji - Software Developer, AI Engineer, and UI/UX Designer.",
 };
 
 import { ProfileProvider } from "@/context/ProfileContext";

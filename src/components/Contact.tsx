@@ -13,6 +13,8 @@ export const Contact = () => {
     const [copied, setCopied] = useState(false);
     const [formData, setFormData] = useState({ name: "", email: "", message: "" });
     const [errors, setErrors] = useState({ name: "", email: "", message: "" });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitResult, setSubmitResult] = useState<{ success: boolean; message: string } | null>(null);
 
     const handleCopy = () => {
         navigator.clipboard.writeText(profile.email);
@@ -24,21 +26,32 @@ export const Contact = () => {
         let valid = true;
         const newErrors = { name: "", email: "", message: "" };
 
+        // Name validation
         if (!formData.name.trim()) {
             newErrors.name = "Name is required";
             valid = false;
+        } else if (formData.name.trim().length < 2) {
+            newErrors.name = "Name must be at least 2 characters";
+            valid = false;
         }
 
+        // Strict Email validation
+        // Checks for standard email format: part before @, domain, and top-level domain (2+ chars)
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         if (!formData.email.trim()) {
             newErrors.email = "Email is required";
             valid = false;
-        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-            newErrors.email = "Please enter a valid email address";
+        } else if (!emailRegex.test(formData.email)) {
+            newErrors.email = "Please enter a valid email address (e.g. name@domain.com)";
             valid = false;
         }
 
+        // Message validation
         if (!formData.message.trim()) {
             newErrors.message = "Message is required";
+            valid = false;
+        } else if (formData.message.trim().length < 10) {
+            newErrors.message = "Message must be at least 10 characters long";
             valid = false;
         }
 
@@ -46,13 +59,59 @@ export const Contact = () => {
         return valid;
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (validate()) {
-            // Handle valid submission (e.g., API call)
-            alert("Message sent successfully (Simulation)!");
-            setFormData({ name: "", email: "", message: "" });
-            setErrors({ name: "", email: "", message: "" });
+
+        // Run local validation first
+        if (!validate()) {
+            setSubmitResult({ success: false, message: "Please correct the errors in the form before sending." });
+            return;
+        }
+
+        setIsSubmitting(true);
+        setSubmitResult(null);
+
+        // ----------------------------------------------------------------------
+        // Formspree Endpoint
+        // ----------------------------------------------------------------------
+        const endpoint = "https://formspree.io/f/xpqqewna";
+
+        try {
+            const response = await fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+
+            const data = await response.json().catch(() => ({}));
+
+            if (response.ok) {
+                setSubmitResult({ success: true, message: "Message sent successfully! I'll get back to you soon." });
+                setFormData({ name: "", email: "", message: "" });
+                setErrors({ name: "", email: "", message: "" });
+            } else {
+                // Handle specific HTTP errors
+                if (response.status === 400 || response.status === 422) {
+                    // Validation errors from Formspree
+                    if (data.errors && Array.isArray(data.errors)) {
+                        const serverMessage = data.errors.map((err: any) => err.message).join(", ");
+                        setSubmitResult({ success: false, message: `Submission Error: ${serverMessage}` });
+                    } else {
+                        setSubmitResult({ success: false, message: "There was a problem with your submission. Please check your details." });
+                    }
+                } else if (response.status === 404) {
+                    setSubmitResult({ success: false, message: "Configuration Error: The form endpoint was not found. Please contact the administrator." });
+                } else {
+                    setSubmitResult({ success: false, message: "Something went wrong. Please try again later." });
+                }
+            }
+        } catch (err) {
+            setSubmitResult({ success: false, message: "Network Error: Failed to send message. Please check your internet connection." });
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -136,9 +195,19 @@ export const Contact = () => {
                             />
                             {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
                         </div>
-                        <Button className="w-full" type="submit">
-                            Send Message <Send size={16} />
+                        <Button className="w-full" disabled={isSubmitting}>
+                            {isSubmitting ? "Sending..." : <>Send Message <Send size={16} /></>}
                         </Button>
+
+                        {submitResult && (
+                            <motion.p
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                className={`text-sm mt-4 text-center p-3 rounded bg-black/50 ${submitResult.success ? 'text-green-400 border border-green-500/30' : 'text-red-400 border border-red-500/30'}`}
+                            >
+                                {submitResult.message}
+                            </motion.p>
+                        )}
                     </form>
 
                 </ScrollAnimation>
